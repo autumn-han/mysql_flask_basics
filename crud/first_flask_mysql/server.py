@@ -10,8 +10,13 @@ def index():
     print(friends)
     return render_template("index.html", all_friends = friends)
 
-@app.route('/create_friend', methods=["POST"])
-def create_friend():
+@app.route('/one_friend')
+def index_one():
+    friend = Friend.get_one()
+    print(friend)
+
+@app.route('/friends/create', methods=["POST"])
+def create():
     data = {
         "fname": request.form["fname"],
         "lname": request.form["lname"],

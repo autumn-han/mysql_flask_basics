@@ -18,6 +18,19 @@ class User:
         for user in results:
             users.append(cls(user))
         return users
+    
+    @classmethod
+    def get_one(cls, user_id):
+        query = "SELECT * FROM users WHERE id=%(id_num)s;"
+        data = {"id_num": user_id}
+        result = connectToMySQL(cls.DB).query_db(query, data)
+        return cls(result[0])
+    
+    @classmethod
+    def update(cls, data):
+        query = "UPDATE users SET first_name = %(fname)s, last_name = %(lname)s, email = %(email)s WHERE id=%(id)s"
+        result = connectToMySQL(cls.DB).query_db(query, data)
+        return result
             
     @classmethod
     def save(cls, data):

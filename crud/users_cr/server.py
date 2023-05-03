@@ -12,10 +12,12 @@ def index():
 def users():    
     return render_template("read_all.html", users = User.get_all())
 
-@app.route('/show/<int:user_id>')
-def show(user_id):
-    user = User.get_one(user_id)
-    return render_template("read_one.html", user = user)
+@app.route('/show/<int:id>')
+def show(id):
+    data = {
+        "id": id
+    }
+    return render_template("read_one.html", user = User.get_one(data))
 
 @app.route('/users/new')
 def new():
@@ -27,18 +29,24 @@ def create():
     User.save(request.form)
     return redirect('/users')
 
-@app.route('/delete/<int:user_id>')
-def delete(user_id):
-    User.delete(user_id)
+@app.route('/delete/<int:id>')
+def delete(id):
+    data = {
+        "id": id
+    }
+    User.delete(data)
     return redirect('/')
 
-@app.route('/user/update/form/<int:user_id>')
-def update_form(user_id):
-    user = User.get_one(user_id)
-    return render_template("edit_user.html", user = user)
+@app.route('/user/update/form/<int:id>')
+def update_form(id):
+    data = {
+        "id": id
+    }
+    return render_template("edit_user.html", user = User.get_one(data))
 
 @app.route('/user/update', methods=["POST"])
 def update():
+    print(request.form)
     User.update(request.form)
     return redirect('/')
 

@@ -27,9 +27,15 @@ def create():
     User.save(request.form)
     return redirect('/users')
 
-@app.route('/user/update/form')
-def update_form():
-    return render_template("edit_user.html")
+@app.route('/delete/<int:user_id>')
+def delete(user_id):
+    User.delete(user_id)
+    return redirect('/')
+
+@app.route('/user/update/form/<int:user_id>')
+def update_form(user_id):
+    user = User.get_one(user_id)
+    return render_template("edit_user.html", user = user)
 
 @app.route('/user/update', methods=["POST"])
 def update():

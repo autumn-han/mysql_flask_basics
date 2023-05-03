@@ -28,12 +28,18 @@ class User:
     
     @classmethod
     def update(cls, data):
-        query = "UPDATE users SET first_name = %(fname)s, last_name = %(lname)s, email = %(email)s WHERE id=%(id)s"
+        query = "UPDATE users SET first_name = %(fname)s, last_name = %(lname)s, email = %(email)s WHERE id=%(id)s;"
         result = connectToMySQL(cls.DB).query_db(query, data)
         return result
-            
+        
     @classmethod
     def save(cls, data):
         query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES (%(fname)s, %(lname)s, %(email)s, NOW(), NOW());"
         result = connectToMySQL(cls.DB).query_db(query, data)
         return result
+    
+    @classmethod
+    def delete(cls, user_id):
+        query = "DELETE FROM users WHERE id = %(id)s;"
+        data = {"id": user_id}
+        return connectToMySQL(cls.DB).query_db(query, data)

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Dojos</title>
+</head>
+<body>
+    <div>
+        <h1>New Dojo</h1>
+        <form action="/process" method="post">
+            <label for="dojo_name">Name: </label>
+            <input type="text" name="dojo_name">
+            <button>Add Dojo</button>
+        </form>
+    </div>
+    <div>
+        <h1>All Dojos</h1>
+        {% for x in dojos: %}
+            <input type="hidden" name="id" value={{dojos.id}}>
+            <a href="#">{{ dojo.name }}</a>
+        {% endfor %}
+    </div>
+    <a href="#">Add Ninja</a>
+</body>
+</html>

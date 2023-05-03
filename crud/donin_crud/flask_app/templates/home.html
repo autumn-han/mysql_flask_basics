@@ -9,7 +9,7 @@
 <body>
     <div>
         <h1>New Dojo</h1>
-        <form action="/process" method="post">
+        <form action="/process/dojo" method="post">
             <label for="dojo_name">Name: </label>
             <input type="text" name="dojo_name">
             <button>Add Dojo</button>
@@ -17,11 +17,12 @@
     </div>
     <div>
         <h1>All Dojos</h1>
-        {% for x in dojos: %}
-            <input type="hidden" name="id" value={{dojos.id}}>
-            <a href="#">{{ dojo.name }}</a>
+        {% for dojo in dojos: %}
+            <div>
+                <a href="/dojos/{{dojo.id}}">{{dojo.name}}</a>
+            </div>
         {% endfor %}
     </div>
-    <a href="#">Add Ninja</a>
+    <a href="/ninjas">Add Ninja</a>
 </body>
 </html>

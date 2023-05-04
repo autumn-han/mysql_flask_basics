@@ -9,6 +9,7 @@ class Ninja():
         self.age = data['age']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.dojo_id = data['dojo_id']
 
     @classmethod
     def save(cls, data):
@@ -16,3 +17,8 @@ class Ninja():
         result = connectToMySQL(cls.DB).query_db(query, data)
         return result
     
+    @classmethod
+    def clear(cls, data):
+        query = "DELETE FROM ninjas WHERE id=%(id)s;"
+        result = connectToMySQL(cls.DB).query_db(query, data)
+        return result

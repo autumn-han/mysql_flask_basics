@@ -37,7 +37,8 @@ class Dojo:
                 "last_name": row["last_name"],
                 "age": row["age"],
                 "created_at": row["created_at"],
-                "updated_at": row["updated_at"]
+                "updated_at": row["updated_at"],
+                "dojo_id": row["dojo_id"]
             }
             dojo.ninjas.append(ninja.Ninja(ninja_data))
 

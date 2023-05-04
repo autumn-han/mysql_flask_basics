@@ -12,7 +12,7 @@ class Ninja():
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at) VALUES (%(fname)s, %(lname)s, %(age)s, NOW(), NOW());"
+        query = "INSERT INTO ninjas (dojo_id, first_name, last_name, age, created_at, updated_at) VALUES (%(dojo_id)s, %(fname)s, %(lname)s, %(age)s, NOW(), NOW());"
         result = connectToMySQL(cls.DB).query_db(query, data)
         return result
     

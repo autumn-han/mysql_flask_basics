@@ -1,7 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, request
 from flask_app.models.dojo import Dojo
-from flask_app.models.ninja import Ninja
 
 @app.route('/')
 def index():
@@ -26,10 +25,4 @@ def new_ninja_form():
 def create_dojo():
     print(request.form)
     Dojo.save(request.form)
-    return redirect('/')
-
-@app.route('/process/ninja', methods=['POST'])
-def create_ninja():
-    print(request.form)
-    Ninja.save(request.form)
     return redirect('/')

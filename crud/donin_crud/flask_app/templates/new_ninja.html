@@ -10,7 +10,7 @@
     <h1>New Ninja</h1>
     <form action="/process/ninja" id="city" method="post">
         <label for="dojo">Dojo: </label>
-        <select name="dojo" form="city">
+        <select name="dojo_id" form="city">
             {% for dojo in dojos %}
                 <option value={{dojo.id}}>{{dojo.name}}</option>
             {% endfor %}

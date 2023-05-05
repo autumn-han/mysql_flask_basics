@@ -31,7 +31,6 @@ def update():
     return redirect(url_for('display_dojo', id = request.form['dojo_id']))
 
 # Friday To-List #
-# 1. do chapter reading
-# 2. watch lecture
+# 2. watch lecture 
 # 3. work on how to grab the ninja id for the update process/html page
 # if time: start working on next practice problem and/or figure out bootstrap for the donin_crud assignment

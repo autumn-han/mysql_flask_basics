@@ -20,7 +20,7 @@
                 <td>{{ninja.first_name}}</td>
                 <td>{{ninja.last_name}}</td>
                 <td>{{ninja.age}}</td>
-                <td><a href="#">edit</a> | <a href="/delete/ninja/{{ninja.id}}">delete</a></td>
+                <td><a href="/update/form/{{ninja.id}}">edit</a> | <a href="/delete/ninja/{{ninja.id}}/{{ninja.dojo_id}}">delete</a></td>
             </tr>
         {% endfor %}
     </table>

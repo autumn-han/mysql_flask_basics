@@ -43,3 +43,4 @@ class Dojo:
             dojo.ninjas.append(ninja.Ninja(ninja_data))
 
         return dojo
+    

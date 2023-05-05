@@ -25,7 +25,7 @@ class Ninja():
     
     @classmethod
     def update(cls, data):
-        query = "UPDATE ninjas SET first_name=%(fname)s, last_name=%(lname)s, age=%(age)s WHERE id=%(id)s;"
+        query = "UPDATE ninjas SET first_name=%(fname)s, last_name=%(lname)s, age=%(age)s, updated_at=NOW() WHERE id=%(id)s;"
         result = connectToMySQL(cls.DB).query_db(query, data)
         return result
     

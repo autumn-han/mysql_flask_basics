@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Orders</title>
+</head>
+<body>
+    <h1>Cookie Orders</h1>
+    <h3>All Orders:</h3>
+    <table>
+        <tr>
+            <th>Customer Name</th>
+            <th>Cookie Type</th>
+            <th>Number of Boxes</th>
+            <th>Actions</th>
+        </tr>
+        {% for customer in customer_list: %}
+            <tr>
+                <!-- <td>customer name</td> this is where we'll insert the for-loop
+                <td>cookie type</td>
+                <td>number of boxes</td>
+                <td><a href="#">Edit</a></td> -->
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="#">+ New Order</a>
+</body>
+</html>

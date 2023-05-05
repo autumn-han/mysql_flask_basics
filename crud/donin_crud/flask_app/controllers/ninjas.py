@@ -1,7 +1,6 @@
 from flask_app import app
 from flask import request, redirect, url_for, render_template
 from flask_app.models.ninja import Ninja
-from flask_app.models.dojo import Dojo
 
 @app.route('/process/ninja', methods=['POST'])
 def create_ninja():
@@ -32,5 +31,4 @@ def update():
 
 # Friday To-List #
 # 2. watch lecture 
-# 3. work on how to grab the ninja id for the update process/html page
 # if time: start working on next practice problem and/or figure out bootstrap for the donin_crud assignment

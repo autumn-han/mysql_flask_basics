@@ -15,15 +15,16 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
-    <form action="#" method="post">
+    <form action="/cookies/edit/process" method="post">
+        <input type="hidden" name="id" value={{order.id}}>
         <label for="name">Name: </label>
         <input type="text" name="name">
         <label for="cookie_type">Cookie Type: </label>
-        <input type="text" name="name">
+        <input type="text" name="cookie_type">
         <label for="amount">Number of Boxes: </label>
         <input type="number" name="amount">
         <button>Log</button>
     </form>
-    <a href="#">Back to Purchases</a>
+    <a href="/">Back to Purchases</a>
 </body>
 </html>

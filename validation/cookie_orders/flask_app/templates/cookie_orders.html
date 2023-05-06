@@ -16,12 +16,12 @@
             <th>Number of Boxes</th>
             <th>Actions</th>
         </tr>
-        {% for order in customer.orders: %}
+        {% for order in orders: %}
             <tr>
                 <td>{{order.name}}</td> 
                 <td>{{order.cookie_type}}</td>
                 <td>{{order.amount}}</td>
-                <td><a href="#">Edit</a></td>
+                <td><a href="/cookies/edit/{{order.id}}">Edit</a></td>
             </tr>
         {% endfor %}
     </table>

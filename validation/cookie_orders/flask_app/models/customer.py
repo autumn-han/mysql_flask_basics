@@ -33,3 +33,9 @@ def one_customer(cls, data):
         customer.orders.append(order.Order(order_data))
     return customer
 
+@classmethod
+def customer_info(cls, data):
+    query = "SELECT * FROM customers WHERE id=%(id)s;"
+    result = connectToMySQL(cls.DB).query_db(query, data)
+    return cls(result[0])
+

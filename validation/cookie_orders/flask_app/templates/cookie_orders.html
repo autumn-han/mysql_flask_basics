@@ -16,12 +16,12 @@
             <th>Number of Boxes</th>
             <th>Actions</th>
         </tr>
-        {% for customer in customer_list: %}
+        {% for order in customer.orders: %}
             <tr>
-                <!-- <td>customer name</td> this is where we'll insert the for-loop
-                <td>cookie type</td>
-                <td>number of boxes</td>
-                <td><a href="#">Edit</a></td> -->
+                <td>{{order.name}}</td> 
+                <td>{{order.cookie_type}}</td>
+                <td>{{order.amount}}</td>
+                <td><a href="#">Edit</a></td>
             </tr>
         {% endfor %}
     </table>

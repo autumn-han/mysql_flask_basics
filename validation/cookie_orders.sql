@@ -16,34 +16,16 @@ CREATE SCHEMA IF NOT EXISTS `cookie_orders` DEFAULT CHARACTER SET utf8 ;
 USE `cookie_orders` ;
 
 -- -----------------------------------------------------
--- Table `cookie_orders`.`customers`
+-- Table `cookie_orders`.`cookie_orders`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cookie_orders`.`customers` (
+CREATE TABLE IF NOT EXISTS `cookie_orders`.`cookie_orders` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
+  `cookie_type` VARCHAR(45) NULL,
+  `boxes` INT NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP(),
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `cookie_orders`.`orders`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cookie_orders`.`orders` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `cookie_type` VARCHAR(45) NULL,
-  `amount` INT NULL,
-  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP(),
-  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP(),
-  `customer_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_orders_customers_idx` (`customer_id` ASC) VISIBLE,
-  CONSTRAINT `fk_orders_customers`
-    FOREIGN KEY (`customer_id`)
-    REFERENCES `cookie_orders`.`customers` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 

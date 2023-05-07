@@ -1,6 +1,6 @@
 from flask_app import app
 from flask_app.models.order import Order
-from flask import render_template, redirect, request
+from flask import flash, render_template, redirect, request, session, url_for
 
 
 @app.route('/')
@@ -18,6 +18,8 @@ def new_order():
 @app.route('/process/new', methods=['POST'])
 def create():
     print(request.form)
+    if not Order.validate_user(request.form):
+        return redirect('/cookies/new')
     Order.save(request.form)
     return redirect('/')
 
@@ -31,5 +33,8 @@ def change_order(id):
 @app.route('/process/edit', methods=['POST'])
 def edit():
     print(request.form)
+    if not Order.validate_user(request.form):
+        return redirect(url_for('change_order', id = request.form["id"]))
     Order.update(request.form)
     return redirect('/')
+

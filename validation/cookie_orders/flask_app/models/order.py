@@ -1,4 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
 
 class Order:
     DB = "cookie_orders"
@@ -33,3 +34,17 @@ class Order:
         query = "SELECT * FROM cookie_orders WHERE id=%(id)s;"
         result = connectToMySQL(cls.DB).query_db(query, data)
         return cls(result[0])
+    
+    @staticmethod
+    def validate_user(order):
+        is_valid = True
+        if len(order["name"]) <= 2:
+            flash("Customer name must be attached to order")
+            is_valid = False
+        if len(order["cookie_type"]) <= 2:
+            flash("Must state what type of cookie is being ordered")
+            is_valid = False
+        if int(order["boxes"]) <= 0:
+            flash("Number of boxes must be at least 1")
+            is_valid = False
+        return is_valid

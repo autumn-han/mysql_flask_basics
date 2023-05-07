@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Orders</title>
+</head>
+<body>
+    <h1>Change Order</h1>
+    <form action="/process/edit" method="post">
+        <input type="hidden" name="id" value={{order.id}}>
+        <label for="name">Name: </label>
+        <input type="text" name="name" placeholder="{{order.name}}">
+        <label for="cookie_type">Cookie Type: </label>
+        <input type="text" name="cookie_type" placeholder="{{order.cookie_type}}">
+        <label for="boxes">Number of Boxes: </label>
+        <input type="number" name="boxes" placeholder="{{order.boxes}}">
+        <button>Log</button>
+    </form>
+    <a href="/">Back to Purchases</a>
+</body>
+</html>

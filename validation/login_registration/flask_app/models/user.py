@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 import re
 
-EMAIL_REGEX = r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$'
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
     DB = "login_registration"
@@ -25,8 +25,8 @@ class User:
     def get_by_email(cls, data):
         query = "SELECT * FROM users WHERE email=%(email)s;"
         result = connectToMySQL(cls.DB).query_db(query, data)
-        email_present = cls(result[0])
-        return email_present
+        return cls(result[0])
+        
     
     @staticmethod
     def validate_user(user):
@@ -47,10 +47,12 @@ class User:
         if not EMAIL_REGEX.match(user["email"]):
             flash("invalid email address")
             is_valid = False
+        # need to figure out what to do here with checking whether the email is present in the database
         if User.get_by_email(user["email"]) == True:
             is_valid = False
         if len(user["password"]) < 8:
             flash("password must be at least 8 characters")
             is_valid = False
+        return is_valid
         
 

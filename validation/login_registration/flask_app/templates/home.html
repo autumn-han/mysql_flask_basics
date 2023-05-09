@@ -37,7 +37,7 @@
             </div>
             <div class="container w-25 p-3 bg-secondary">
                 <h2 class="text-success fw-bold">Login</h2>
-                {% with messages = get_flashed_messages %}
+                {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
                             <p>{{message}}</p>
@@ -48,7 +48,7 @@
                     <label for="email" class="form-label">Email: </label>
                     <input type="text" name="email" class="form-control">
                     <label for="password" class="form-label">Password: </label>
-                    <input type="text" name="password" class="form-control">
+                    <input type="password" name="password" class="form-control">
                     <button type="submit" class="btn btn-success mt-3">Log In</button>
                 </form>
             </div>

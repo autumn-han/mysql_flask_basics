@@ -37,7 +37,10 @@ def login():
     if not user_in_db:
         flash("No account found, please register with the form on the left")
         return redirect('/')
-    print(request.form)
+    if not bcrypt.check_password_hash(user_in_db.password, request.form["password"]):
+        flash("wrong password")
+        return redirect('/')
+    session["first_name"] = user_in_db.first_name
     return redirect('/welcome')
     
 @app.route('/welcome')

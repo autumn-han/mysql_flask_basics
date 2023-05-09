@@ -17,7 +17,7 @@
                         {% with messages = get_flashed_messages() %}
                             {% if messages %}
                                 {% for message in messages %}
-                                    {{message}}
+                                    <p>{{message}}</p>
                                 {% endfor %}
                             {% endif %}
                         {% endwith %}
@@ -37,7 +37,14 @@
             </div>
             <div class="container w-25 p-3 bg-secondary">
                 <h2 class="text-success fw-bold">Login</h2>
-                <form action="#" method="post" class="text-white">
+                {% with messages = get_flashed_messages %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <form action="/process/login" method="post" class="text-white">
                     <label for="email" class="form-label">Email: </label>
                     <input type="text" name="email" class="form-control">
                     <label for="password" class="form-label">Password: </label>

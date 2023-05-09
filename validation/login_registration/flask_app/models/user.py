@@ -16,24 +16,32 @@ class User:
         self.updated_at = data["updated_at"]
 
     @classmethod
-    def save(cls):
+    def save(cls, data):
         query = "INSERT INTO users (first_name, last_name, email, password) VALUES (%(fname)s, %(lname)s, %(email)s, %(password)s);"
-        result = connectToMySQL(cls.DB).query_db(query)
+        result = connectToMySQL(cls.DB).query_db(query, data)
         return result
     
     @classmethod
     def get_by_email(cls, data):
         query = "SELECT * FROM users WHERE email=%(email)s;"
         result = connectToMySQL(cls.DB).query_db(query, data)
-        return cls(result[0])
-        
+        if len(result) < 1:
+            return False
+        return cls(result[0])    
     
     @staticmethod
     def validate_user(user):
         is_valid = True
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        result = connectToMySQL(User.DB).query_db(query, user)
+        if len(result) >= 1:
+            flash("email is already linked to another account, please enter a different email")
+            is_valid = False
+        if not EMAIL_REGEX.match(user["email"]):
+            flash("invalid email address")
+            is_valid = False
         if str.isalpha(user["fname"]) == False: 
-            flash("first name cannot contain numbers")
-            # could maybe add first name and last name string checks together 
+            flash("first name cannot contain numbers") 
             is_valid = False
         if len(user["fname"]) < 2:
             flash("first name must be at least 2 letters")
@@ -44,14 +52,11 @@ class User:
         if len(user["lname"]) < 2:
             flash("last name must be at least 2 letters")
             is_valid = False
-        if not EMAIL_REGEX.match(user["email"]):
-            flash("invalid email address")
-            is_valid = False
-        # need to figure out what to do here with checking whether the email is present in the database
-        if User.get_by_email(user["email"]) == True:
-            is_valid = False
         if len(user["password"]) < 8:
             flash("password must be at least 8 characters")
+            is_valid = False
+        if user["password"] != user["confirm"]:
+            flash("password entries do not match with each other")
             is_valid = False
         return is_valid
         

@@ -35,28 +35,28 @@ class User:
         query = "SELECT * FROM users WHERE email = %(email)s;"
         result = connectToMySQL(User.DB).query_db(query, user)
         if len(result) >= 1:
-            flash("email is already linked to another account, please enter a different email")
+            flash("email is already linked to another account, please enter a different email", "registration")
             is_valid = False
         if not EMAIL_REGEX.match(user["email"]):
-            flash("invalid email address")
+            flash("invalid email address", "registration")
             is_valid = False
         if str.isalpha(user["fname"]) == False: 
-            flash("first name cannot contain numbers") 
+            flash("first name cannot contain numbers", "registration") 
             is_valid = False
         if len(user["fname"]) < 2:
-            flash("first name must be at least 2 letters")
+            flash("first name must be at least 2 letters", "registration")
             is_valid = False
         if str.isalpha(user["lname"]) == False:
-            flash("last name cannot contain numbers")
+            flash("last name cannot contain numbers", "registration")
             is_valid = False
         if len(user["lname"]) < 2:
-            flash("last name must be at least 2 letters")
+            flash("last name must be at least 2 letters", "registration")
             is_valid = False
         if len(user["password"]) < 8:
-            flash("password must be at least 8 characters")
+            flash("password must be at least 8 characters", "registration")
             is_valid = False
         if user["password"] != user["confirm"]:
-            flash("password entries do not match with each other")
+            flash("password entries do not match with each other", "registration")
             is_valid = False
         return is_valid
     

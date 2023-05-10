@@ -1,4 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+
+from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 import re
 
@@ -66,6 +68,3 @@ class User:
             is_valid = False
         return is_valid
     
-
-        
-

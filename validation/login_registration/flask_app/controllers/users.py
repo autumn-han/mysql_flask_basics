@@ -33,14 +33,14 @@ def login():
     data = {
         "email": request.form["email"]
     }
-    user_in_db = User.get_by_email(data)
+    user_in_db = User.get_by_email(data) # validation in the controller 
     if not user_in_db:
         flash("No account found, please register with the form on the left", "login")
         return redirect('/')
     if not bcrypt.check_password_hash(user_in_db.password, request.form["password"]):
         flash("wrong password", "login")
         return redirect('/')
-    session["first_name"] = user_in_db.first_name
+    session["fname"] = user_in_db.first_name
     return redirect('/welcome')
     
 @app.route('/welcome')

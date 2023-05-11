@@ -46,6 +46,6 @@ def all_recipes():
     data = {
         "id": session["user_id"]
     }
-    user = User.get_by_id(data)
-    recipes = Recipe.get_all_recipes()
-    return render_template('all_recipes.html', user = user, recipes = recipes)
+    main_user = User.get_by_id(data)
+    users = Recipe.get_all()
+    return render_template('all_recipes.html', main_user = main_user, users = users)

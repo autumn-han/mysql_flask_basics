@@ -20,8 +20,8 @@ class Recipe:
         return result
     
     @classmethod
-    def get_all_recipes(cls):
-        query = "SELECT * FROM recipes"
+    def get_all(cls):
+        query = "SELECT * FROM recipes JOIN users ON recipes.user_id = users.id"
         results = connectToMySQL(cls.DB).query_db(query)
         return results
     

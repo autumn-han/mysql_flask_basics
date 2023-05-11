@@ -24,10 +24,10 @@
                 <input type="hidden" name="user_id" value={{user.id}}>
                 <label for="name">Name: </label>
                 <input type="text" name="name">
-                <label for="description">Description: </label>
-                <input type="textarea" name="description">
-                <label for="instructions">Instructions: </label>
-                <input type="textarea" name="instructions">
+                <label for="description" class="form-label">Description: </label>
+                <textarea name="description" class="form-control" rows="3"></textarea>
+                <label for="instructions" class="form-label">Instructions: </label>
+                <textarea name="instructions" class="form-control" rows="3"></textarea>
             </div>
             <div>
                 <label for="date_made">Date Cooked/Made: </label>
@@ -35,9 +35,9 @@
             </div>
             <div>
                 <h4>Under 30 Minutes?</h4>
-                <input type="radio" name="under" id="yes" value="yes">
+                <input type="radio" name="under" id="yes" value=1>
                 <label for="yes">Yes</label>
-                <input type="radio" name="under" id="no" value="no">
+                <input type="radio" name="under" id="no" value=0>
                 <label for="no">No</label>
             </div>
             <button>Add</button>

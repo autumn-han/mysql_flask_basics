@@ -32,6 +32,12 @@ class User:
         query = "SELECT * FROM users WHERE users.id=%(id)s"
         result = connectToMySQL(cls.DB).query_db(query, data)
         return cls(result[0])
+    
+    @classmethod
+    def get_by_email(cls, data):
+        query = "SELECT * FROM users WHERE email=%(email)s"
+        result = connectToMySQL(cls.DB).query_db(query, data)
+        return cls(result[0])
 
     @classmethod
     def get_user_recipes(cls, data):
@@ -85,17 +91,20 @@ class User:
         return is_valid
 
     @staticmethod
-    def validate_login(user):
-        is_valid = True
-        query = "SELECT * FROM users WHERE email=%(email)s;"
-        result = connectToMySQL(User.DB).query_db(query, user)
-        if not EMAIL_REGEX.match(user["email"]):
+    def validate_login(form):
+        if not EMAIL_REGEX.match(form["email"]):
             flash("invalid email address", "login")
-            is_valid = False
-        if not bcrypt.check_password_hash(result["password"], user["password"]):
+            return False
+        user = User.get_by_email(form)
+        if not user:
+            flash("username does not exist", "login")
+            return False
+        if not bcrypt.check_password_hash(user.password, form["password"]):
             flash("wrong password", "login")
-            is_valid = False
-        return is_valid
+            return False
+        return user
+    
+    
         
     
 

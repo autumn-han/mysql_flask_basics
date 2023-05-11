@@ -11,7 +11,7 @@ def index():
     return render_template('home.html')
 
 @app.route('/process/registration', methods=['POST'])
-def create_user():
+def register():
     print(request.form)
     if not User.validate_user(request.form):
         return redirect('/')
@@ -26,6 +26,20 @@ def create_user():
     user_id = User.save(data)
     session["user_id"] = user_id
     return redirect('/recipes')
+
+@app.route('/process/login', methods=['POST'])
+def login():
+    print(request.form)
+    user = User.validate_login(request.form)
+    if not user:
+        return redirect('/')
+    session["user_id"] = user.id
+    return redirect('/recipes')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 @app.route('/recipes')
 def all_recipes():

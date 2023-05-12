@@ -21,11 +21,15 @@
             {% for recipe in recipes %} 
                 <tr>
                     <td>{{recipe.name}}</td>
-                    <td>{{recipe.under}}</td>
+                    {% if recipe.under == 0 %}
+                        <td>No</td>
+                    {% elif recipe.under == 1 %}
+                        <td>Yes</td>
+                    {% endif %}
                     <td>{{recipe.first_name}}</td>
                     <td>
                         {% if recipe.user_id == user.id %}
-                            <a href="/recipes/{{recipe.id}}">view recipe</a> | <a href="/recipes/edit/{{recipe.id}}">edit</a> | <a href="#">delete</a>
+                            <a href="/recipes/{{recipe.id}}">view recipe</a> | <a href="/recipes/edit/{{recipe.id}}">edit</a> | <a href="/process/delete/{{recipe.id}}">delete</a>
                         {% else %}
                             <a href="/recipes/{{recipe.id}}">view recipe</a>
                         {% endif %}

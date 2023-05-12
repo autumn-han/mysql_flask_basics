@@ -46,3 +46,11 @@ def update():
         return redirect(url_for('display_edit', id=session["id"]))
     Recipe.update(request.form)
     return redirect('/recipes')
+
+@app.route('/process/delete/<int:id>')
+def delete(id):
+    data = {
+        "id": id
+    }
+    Recipe.destroy(data)
+    return redirect('/recipes')

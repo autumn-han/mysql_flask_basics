@@ -16,7 +16,11 @@
             <p>{{recipe.description}}</p>
         </div>
         <div>
-            <p>Under 30 Mminutes: {{recipe.under}}</p>
+            {% if recipe.under == 0 %}
+                <p>Under 30 Mminutes: No</p>
+            {% elif recipe.under == 1 %}
+                <p>Under 30 Minutes: Yes</p>
+            {% endif %}
         </div>
         <div>
             <p>Instructions:</p>

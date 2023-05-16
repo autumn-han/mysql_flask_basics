@@ -11,7 +11,7 @@ def author_dashboard():
     authors = Author.get_all()
     return render_template('dashboard.html', authors = authors)
 
-@app.route('/process/create_author', methods=['POST'])
+@app.route('/process/add_author', methods=['POST'])
 def create():
     Author.save(request.form)
     return redirect('/authors')

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Show</title>
+</head>
+<body>
+    <div>
+        <h1>{{author.first_name}} {{author.last_name}}'s Favorites</h1>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Number of Pages</th>
+            </tr>
+            {% for fave_book in fave_books %}
+                <tr>
+                    <td>{{fave_book.title}}</td>
+                    <td>{{fave_book.num_of_pages}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

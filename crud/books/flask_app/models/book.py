@@ -20,3 +20,4 @@ class Book:
         query = "INSERT INTO books (title, num_of_pages) VAlUES (%(title)s, %(pages)s);"
         result = connectToMySQL(cls.DB).query_db(query, data)
         return result
+    

@@ -1,5 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.models.book import Book
+from flask_app.models import book
 
 class Author:
     DB = "books_schema"
@@ -21,7 +21,7 @@ class Author:
     def get_one(cls, data):
         query = "SELECT * FROM users WHERE id=%(id)s;"
         result = connectToMySQL(cls.DB).query_db(query, data)
-        return result
+        return cls(result[0])
     
     @classmethod
     def save(cls, data):
@@ -42,6 +42,6 @@ class Author:
                 "created_at": row["created_at"],
                 "updated_at": row["updated_at"]
             }
-            author.fave_books.append(Book(book_info))
+            author.fave_books.append(book.Book(book_info))
         return author
     
